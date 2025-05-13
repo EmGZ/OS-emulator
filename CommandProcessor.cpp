@@ -9,8 +9,21 @@ bool CommandProcessor::executeCommand(const std::string& cmd, Console& console) 
     } else if (cmd == "clear") {
         console.clearScreen();
         console.printDefaultDisplay();
-    } else if (cmd == "COMMAND 1") {    //! ADD MORE COMMANDS
-        std::cout << "COMMAND 1 recognized. Doing something." << std::endl;
+    } else if (cmd == "initialize") {  
+        std::cout << cmd << " command recognized. Doing something." << std::endl;
+        // Commands to be added
+    } else if (cmd == "screen") { 
+        std::cout << cmd << " command recognized. Doing something." << std::endl;
+        // Commands to be added
+    } else if (cmd == "scheduler-test") {
+        std::cout << cmd << " command recognized. Doing something." << std::endl; 
+        // Commands to be added
+    } else if (cmd == "scheduler-stop") {
+        std::cout << cmd << " command recognized. Doing something." << std::endl; 
+        // Commands to be added
+     } else if (cmd == "report-util") {
+        std::cout << cmd << " command recognized. Doing something." << std::endl; 
+        // Commands to be added   
     } else {
         std::cout << "invalid command" << std::endl;
     }
