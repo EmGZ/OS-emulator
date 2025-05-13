@@ -1,0 +1,13 @@
+#ifndef CONSOLE_H
+#define CONSOLE_H
+
+#include <windows.h>
+
+class Console {  // Class is called Console, not ConsoleManager
+public:
+    void setColor(WORD color);
+    void clearScreen();
+    void printDefaultDisplay();
+};
+
+#endif // CONSOLE_H
