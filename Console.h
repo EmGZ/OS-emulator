@@ -3,11 +3,11 @@
 
 #include <windows.h>
 
-class Console {  // Class is called Console, not ConsoleManager
+class Console {  
 public:
     void setColor(WORD color);
     void clearScreen();
     void printDefaultDisplay();
 };
 
-#endif // CONSOLE_H
+#endif 
