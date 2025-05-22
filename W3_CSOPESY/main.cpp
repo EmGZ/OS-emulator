@@ -7,6 +7,16 @@
 
 ConsoleManager consoles;
 void displayHeader() {
+    std::cout << R"(
+ ________  ________  ________  ________  _______   ________       ___    ___ 
+|\   ____\|\   ____\|\   __  \|\   __  \|\  ___ \ |\   ____\     |\  \  /  /|
+\ \  \___|\ \  \___|\ \  \|\  \ \  \|\  \ \   __/|\ \  \___|_    \ \  \/  / /
+ \ \  \    \ \_____  \ \  \\\  \ \   ____\ \  \_|/_\ \_____  \    \ \    / / 
+  \ \  \____\|____|\  \ \  \\\  \ \  \___|\ \  \_|\ \|____|\  \    \/  /  /  
+   \ \_______\____\_\  \ \_______\ \__\    \ \_______\____\_\  \ __/  / /    
+    \|_______|\_________\|_______|\|__|     \|_______|\_________\\___/ /     
+             \|_________|                            \|_________\|___|/              
+    )" << std::endl;
 
     std::cout << "\033[32m" << "Hello, Welcome to CSOPESY command-line interface!" << "\033[0m" << std::endl;
     std::cout << "\033[33m" << "Type 'exit' to quit, 'clear' to clear the screen.\n" << "\033[0m" << std::endl;
@@ -14,13 +24,8 @@ void displayHeader() {
 
 void screenCMD(const std::vector<std::string>& commandString) {
     // incorrect input
-    if (commandString.size() == 2) {
-        if (commandString[1] == "s" || commandString[1] == "s") {
-            std::cout << "Use format: screen (-r or -s) <console name>\n";
-        }
-        else {
-            std::cout << "screen command not recognized. Try again \n";
-        }
+    if (commandString[1] == "s" || commandString[1] == "r") {
+        std::cout << "Use format: screen (-r or -s) <console name>\n";
     }
     // correct input
     else if (commandString.size() == 3) {
@@ -51,6 +56,10 @@ void screenCMD(const std::vector<std::string>& commandString) {
                 displayHeader();
             }
         }
+    } 
+    // unknown command
+    else {
+        std::cout << "screen command not recognized. Try again \n";
     }
 
 }
