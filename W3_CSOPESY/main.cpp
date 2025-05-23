@@ -6,6 +6,9 @@
 #include "AConsole.h"
 
 ConsoleManager consoles;
+/*
+* This function prints the ASCII text header
+*/
 void displayHeader() {
     std::cout << R"(
  ________  ________  ________  ________  _______   ________       ___    ___ 
@@ -22,53 +25,71 @@ void displayHeader() {
     std::cout << "\033[33m" << "Type 'exit' to quit, 'clear' to clear the screen.\n" << "\033[0m" << std::endl;
 }
 
+/*
+* This function processes the screen command
+* User may opt to start a new console or reopen an existing console
+* 
+* @param commandString - a vector of strings containing the command and its arguments
+*/
 void screenCMD(const std::vector<std::string>& commandString) {
-    // incorrect input
+    // Incorrect input string size
     if (commandString.size() == 2) {
         if (commandString[1] == "s" || commandString[1] == "r") {
-            std::cout << "Use format: screen (-r or -s) <console name>\n";
+            std::cout << "Use Format: screen (-r or -s) <console name>\n";
         }
         else {
-            std::cout << "screen command not recognized. Try again \n";
+            std::cout << "Screen command not recognized. Try again \n";
         }
     }
-    // correct input
+    // Correct input string size
     else if (commandString.size() == 3) {
         std::string input = commandString[1];
         std::string name = commandString[2];
 
-        // create console
+        // Start/Create console
         if (input == "-s") {
             if (consoles.findConsole(name)) {
-                std::cout << "console " << name << " is already in use.\n";
+                std::cout << "Console " << name << " is already in use.\n";
             }
             else {
-                consoles.addConsole(name); // create the console
-                consoles.viewConsole(name); // view console
-                consoles.consoleExit();  // wait to exit
+                std::cout << "Creating console " << name << "...\n";
+                consoles.addConsole(name); // Create the console
+                consoles.viewConsole(name); // View console
+                consoles.consoleExit();  // Wait to exit
                 displayHeader();
             }
         }
 
-        // check created console
+        // Reopen console
         else if (input == "-r") {
+            // If console does not exist
             if (!consoles.findConsole(name)) {
-                std::cout << "console " << name << " does not exist.\n";
+                std::cout << "Xonsole " << name << " does not exist.\n";
             }
             else {
-                consoles.viewConsole(name);
-                consoles.consoleExit();
+                consoles.viewConsole(name); // View console
+                consoles.consoleExit(); // Wait to exit
                 displayHeader();
             }
         }
+        // Invalid command
+        else {
+            std::cout << "Screen command not recognized. Try again \n";
+        }
     }
-    // unknown command
+    // Unknown command
     else {
-        std::cout << "screen command not recognized. Try again \n";
+        std::cout << "Screen command not recognized. Try again \n";
     }
 
 }
 
+/*
+* This function checks if the input command is valid (accepted) or not
+* including specific actions fo clear, exit, and screen commands
+* 
+* @param commandString - a vector of strings containing the command and its arguments
+*/
 void checkCommand(const std::vector<std::string>& commandString) {
 
     std::string cmd = commandString[0];
@@ -112,8 +133,12 @@ int main()
 
     while (true) {
         commandString.clear();
+
         std::cout << "Enter a command: ";
 
+        // This loop reads the entire line of input
+        std::getline(std::cin, inputLine);
+        // Split the input line into words
         if (std::getline(std::cin, inputLine)) {
             std::istringstream iss(inputLine);
             std::string command;
@@ -122,6 +147,7 @@ int main()
             }
         }
 
+        // Check if the command is empty
         if (!commandString.empty()) {
             checkCommand(commandString);
         }
