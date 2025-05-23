@@ -24,8 +24,13 @@ void displayHeader() {
 
 void screenCMD(const std::vector<std::string>& commandString) {
     // incorrect input
-    if (commandString[1] == "s" || commandString[1] == "r") {
-        std::cout << "Use format: screen (-r or -s) <console name>\n";
+    if (commandString.size() == 2) {
+        if (commandString[1] == "s" || commandString[1] == "r") {
+            std::cout << "Use format: screen (-r or -s) <console name>\n";
+        }
+        else {
+            std::cout << "screen command not recognized. Try again \n";
+        }
     }
     // correct input
     else if (commandString.size() == 3) {
@@ -56,7 +61,7 @@ void screenCMD(const std::vector<std::string>& commandString) {
                 displayHeader();
             }
         }
-    } 
+    }
     // unknown command
     else {
         std::cout << "screen command not recognized. Try again \n";
