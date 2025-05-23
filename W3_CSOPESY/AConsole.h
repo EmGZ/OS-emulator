@@ -1,7 +1,3 @@
-//
-// Created by Erika on 19/05/2025.
-//
-
 #ifndef ACONSOLE_H
 #define ACONSOLE_H
 
@@ -9,7 +5,6 @@
 #include <ctime>
 #include <vector>
 #include <iostream>
-
 
 class AConsole {
 private:
@@ -30,4 +25,4 @@ private:
     static std::string getCurrentTime();
 };
 
-#endif //ACONSOLE_H
+#endif // ACONSOLE_H

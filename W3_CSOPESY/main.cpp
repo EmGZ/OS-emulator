@@ -64,7 +64,7 @@ void screenCMD(const std::vector<std::string>& commandString) {
         else if (input == "-r") {
             // If console does not exist
             if (!consoles.findConsole(name)) {
-                std::cout << "Xonsole " << name << " does not exist.\n";
+                std::cout << "Console " << name << " does not exist.\n";
             }
             else {
                 consoles.viewConsole(name); // View console

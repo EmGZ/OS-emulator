@@ -1,7 +1,3 @@
-//
-// Created by Erika on 19/05/2025.
-//
-
 #ifndef CONSOLEMANAGER_H
 #define CONSOLEMANAGER_H
 
@@ -17,14 +13,10 @@ private:
 
 public:
     void addConsole(const std::string& name);
-
     bool findConsole(const std::string& name) const;
-
     void viewConsole(const std::string& name) const;
-
+    
     static void consoleExit();
 };
 
-
-
-#endif //CONSOLEMANAGER_H
+#endif // CONSOLEMANAGER_H
