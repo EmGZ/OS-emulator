@@ -24,5 +24,19 @@
     <ClCompile Include="AConsole.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sched.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sched.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

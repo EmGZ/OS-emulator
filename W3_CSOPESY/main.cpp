@@ -4,6 +4,8 @@
 #include <sstream>
 #include "ConsoleManager.h"
 #include "AConsole.h"
+#include "Sched.h"
+
 
 ConsoleManager consoles;
 /*
@@ -36,6 +38,9 @@ void screenCMD(const std::vector<std::string>& commandString) {
     if (commandString.size() == 2) {
         if (commandString[1] == "s" || commandString[1] == "r") {
             std::cout << "Use Format: screen (-r or -s) <console name>\n";
+        }
+        else if (commandString[1] == "-ls"){
+            consoles.listConsoles();
         }
         else {
             std::cout << "Screen command not recognized. Try again \n";
@@ -100,13 +105,9 @@ void checkCommand(const std::vector<std::string>& commandString) {
     else if (cmd == "screen") {
         screenCMD(commandString);
     }
-    else if (cmd == "scheduler-test") {
+    else if (cmd == "scheduler-batch") {
         std::cout << cmd << " command recognized. Doing something.\n";
-        // Commands to be added
-    }
-    else if (cmd == "scheduler-stop") {
-        std::cout << cmd << " command recognized. Doing something.\n";
-        // Commands to be added
+        consoles.createProcesses();
     }
     else if (cmd == "report-util") {
         std::cout << cmd << " command recognized. Doing something.\n";
@@ -127,29 +128,25 @@ void checkCommand(const std::vector<std::string>& commandString) {
 
 int main()
 {
-    std::vector<std::string> commandString;
-    std::string inputLine;
+    vector<string> commandBuffer;
+    string command;
+
+    consoles.initScheduler();
     displayHeader();
 
     while (true) {
-        commandString.clear();
+        commandBuffer.clear();
 
-        std::cout << "Enter a command: ";
+        cout << "Enter a command: ";
 
-        // This loop reads the entire line of input
-        std::getline(std::cin, inputLine);
-        // Split the input line into words
-        if (std::getline(std::cin, inputLine)) {
-            std::istringstream iss(inputLine);
-            std::string command;
-            while (iss >> command) {
-                commandString.push_back(command);
-            }
+        while (cin >> command) {
+            commandBuffer.push_back(command);
+            if (cin.peek() == '\n')
+                break;
         }
 
-        // Check if the command is empty
-        if (!commandString.empty()) {
-            checkCommand(commandString);
+        if (!commandBuffer.empty()) {
+            checkCommand(commandBuffer);
         }
     }
 

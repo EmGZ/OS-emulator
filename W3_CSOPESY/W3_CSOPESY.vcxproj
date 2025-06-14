@@ -130,6 +130,12 @@
     <ClCompile Include="AConsole.cpp" />
     <ClCompile Include="ConsoleManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sched.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AConsole.h" />
+    <ClInclude Include="ConsoleManager.h" />
+    <ClInclude Include="Sched.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

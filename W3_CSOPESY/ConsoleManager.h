@@ -3,19 +3,35 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 #include <vector>
+#include <mutex>
+
 #include "AConsole.h"
+
+using namespace std;
 
 class ConsoleManager {
 private:
-    std::vector<AConsole> consoles;
+    map<string, AConsole*> consoles;
+    int last_process_number = 0;
+    mutex consoleMutex;
+
+
     bool currentConsole = false;
 
 public:
     void addConsole(const std::string& name);
+    void createProcesses();
     bool findConsole(const std::string& name) const;
     void viewConsole(const std::string& name) const;
     
+    void initScheduler();
+    void listConsoles();
+
+
+
+
     static void consoleExit();
 };
 
