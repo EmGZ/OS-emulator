@@ -60,7 +60,7 @@ void screenCMD(const std::vector<std::string>& commandString) {
                 std::cout << "Creating console " << name << "...\n";
                 consoles.addConsole(name); // Create the console
                 consoles.viewConsole(name); // View console
-                consoles.consoleExit();  // Wait to exit
+                consoles.consoleExit(name);  // Wait to exit
                 displayHeader();
             }
         }
@@ -73,7 +73,7 @@ void screenCMD(const std::vector<std::string>& commandString) {
             }
             else {
                 consoles.viewConsole(name); // View console
-                consoles.consoleExit(); // Wait to exit
+                consoles.consoleExit(name); // Wait to exit
                 displayHeader();
             }
         }

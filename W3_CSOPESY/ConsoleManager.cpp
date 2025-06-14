@@ -144,7 +144,7 @@ void ConsoleManager::viewConsole(const std::string& name) const {
 /*
 * This function waits for user input until "exit" is entered
 */
-void ConsoleManager::consoleExit() {
+void ConsoleManager::consoleExit(string name) {
     bool running = true;
     std::string input;
 
@@ -157,6 +157,8 @@ void ConsoleManager::consoleExit() {
 
         if (input == "exit") {
             running = false;
+        } else if (input == "print"){
+            getHistory(name);
         }
         else {
             std::cout << "Command not recognized. Type \'exit\' to leave this screen" << std::endl;
@@ -170,4 +172,14 @@ void ConsoleManager::consoleExit() {
 void ConsoleManager::initScheduler(){
     scheduler = &Sched::getInstance();
     scheduler->start_scheduler();
+}
+
+void ConsoleManager::getHistory(std::string name) {
+    auto it = consoles.find(name);
+    if (it != consoles.end()) {
+        AConsole* console = it->second;
+        console->print(); 
+    } else {
+        std::cout << "No history found for process: " << name << "\n";
+    }
 }

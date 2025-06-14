@@ -86,6 +86,8 @@ void AConsole::runProcess(int coreID, int quantum_cycles, int delayPEX) {
         std::this_thread::sleep_for(std::chrono::milliseconds(2));
         currLine++;
         finishedLine++;
+
+        this->saveProcess(this->getName(), currLine, core_id);
     }
 
     if (currLine == totalLines) {
@@ -93,8 +95,33 @@ void AConsole::runProcess(int coreID, int quantum_cycles, int delayPEX) {
     }
 }
 
+void AConsole::saveProcess(string name, int line, int core_id){
+    Details snap = {
+        .core_id = core_id,
+        .timestamp = getCurrentTime(),
+        .curr_line = line
+    } ;
+
+    history[name].push_back(snap);
+}
+void AConsole::print() const {
+    auto it = history.find(this->getName()); // 'name' is this AConsole's name
+    if (it != history.end()) {
+        std::cout << "Process: " << it->first << "\n";
+        for (const auto& entry : it->second) {
+            std::cout << "  Core: " << entry.core_id
+                      << ", Line: " << entry.curr_line
+                      << ", Time: " << entry.timestamp << "\n";
+        }
+    } else {
+        std::cout << "No logs found for process: " << name << "\n";
+    }
+}
 
 
+const map<std::string, std::vector<Details>>& AConsole::getHistory() const {
+    return history;
+}
 
 
 // #include <string>

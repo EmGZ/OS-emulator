@@ -28,11 +28,13 @@ public:
     
     void initScheduler();
     void listConsoles();
+    void getHistory(string name);
 
 
 
 
-    static void consoleExit();
+
+    void consoleExit(string name);
 };
 
 #endif // CONSOLEMANAGER_H
